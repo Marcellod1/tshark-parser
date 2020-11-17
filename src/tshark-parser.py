@@ -100,29 +100,16 @@ if __name__ == "__main__":
     port_dict = sorted(port_dict.items(), key=lambda x: x[1], reverse=True)
 
     for i in port_dict:
-        print(i[0], i[1])
+        print("port {}, {} bytes, ({:.4f}%)".format(i[0], i[1], (i[1]/total_bytes)*100))
 
     print("---------------------")
 
     # sort and print port traffic by dst port number 
     print("port data by dstport number: ")
     port_dict = get_traffic_by_port(json_packets, "dstport")
-    
     port_dict = sorted(port_dict.items(), key=lambda x: x[1], reverse=True)
 
     for i in port_dict:
-        print(i[0], i[1])
+        print("port {}, {} bytes, ({:.4f}%)".format(i[0], i[1], (i[1]/total_bytes)*100))
+
     print("---------------------")
-    
-
-
-
-
-
-
-    
-
-    
-
-    
-
