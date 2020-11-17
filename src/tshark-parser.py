@@ -43,7 +43,7 @@ def get_total_delay(json_packets):
 # returns a dicitonary representing the total byte traffic on each dstport or srcport
 # requires a port_type argument which can be "dst_port" or "src_port"
 def get_traffic_by_port(json_packets, port_type):
-    src_port_traffic = {}
+    port_traffic = {}
 
     for packet in json_packets:
         
@@ -62,12 +62,12 @@ def get_traffic_by_port(json_packets, port_type):
         else:
             continue
 
-        if(port_key not in src_port_traffic.keys()):
-            src_port_traffic[port_key] = 0
+        if(port_key not in port_traffic.keys()):
+            port_traffic[port_key] = 0
         
-        src_port_traffic[port_key] += int(packet_len)
+        port_traffic[port_key] += int(packet_len)
 
-    return src_port_traffic
+    return port_traffic
 
 
 
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     total_bytes = get_total_bytes(json_packets)
     total_packets = len(json_packets)
 
-    # Print and caclulate  average packet size information
+    # Print and calculate  average packet size information
     print("---------------------")
     print("Total Bytes in trace: " + str(total_bytes))
     print("Total Packets in trace: " + str(total_packets))
@@ -91,6 +91,8 @@ if __name__ == "__main__":
     total_delay = get_total_delay(json_packets)
     throughput = total_bytes // total_delay
 
+    print("Total Bytes in trace: " + str(total_bytes))
+    print("Total delay in trace: " + str(total_delay))
     print("Average throughput(bytes/sec): " + str(throughput))
     print("---------------------")
     
